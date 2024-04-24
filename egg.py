@@ -32,7 +32,7 @@ class EggCatcher(QDialog):
         self.missed_eggs = 0
         self.basket_position = 400
 
-        self.main_label = QLabel('Catch 10 eggs to win!', self)
+        self.main_label = QLabel('Catch 50 eggs to win!', self)
         self.main_label.setGeometry(10, 10, 300, 30)
         self.main_label.setAlignment(Qt.AlignLeft)
         self.main_label.setStyleSheet('font-size: 20px; font-weight: bold; color: #777777;')
