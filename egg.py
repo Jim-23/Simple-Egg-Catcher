@@ -19,6 +19,7 @@ class EggCatcher(QDialog):
         self.move_timer = QTimer(self)
         self.move_timer.timeout.connect(self.moveBasket)
         self.move_timer.start(5)  # Update basket position every 20 ms
+        self.show_high_scores()
         
     def initUI(self):
         self.setWindowTitle('Egg Catcher Game')
@@ -49,7 +50,7 @@ class EggCatcher(QDialog):
 
         # Label for displaying the winning message
         self.winLabel = QLabel('', self)
-        self.winLabel.setGeometry(300, 250, 200, 50)
+        self.winLabel.setGeometry(100, 250, 600, 50)
         self.winLabel.setAlignment(Qt.AlignCenter)
         self.winLabel.setStyleSheet('font-size: 20px; font-weight: bold; color: white;')
 
@@ -62,6 +63,8 @@ class EggCatcher(QDialog):
         self.update_timer = QTimer(self)
         self.update_timer.timeout.connect(self.updateGame)
         self.update_timer.start(50)
+
+        
 
         self.show()
 
@@ -101,7 +104,7 @@ class EggCatcher(QDialog):
                 self.score += 1  # Increment score when an egg is caught
         self.eggs = new_eggs
         self.scoreLabel.setText(f'Score: {self.score}')
-        if self.score >= 10:
+        if self.score >= 50:
             self.winGame()
 
     
@@ -113,14 +116,14 @@ class EggCatcher(QDialog):
             self.save_high_scores()
 
         self.winLabel.setText("You won!")
-        self.winLabel.setStyleSheet("QLabel { color : #4afd4a; font: 40px; }")
+        self.winLabel.setStyleSheet("QLabel { color : #4afd4a; font: 30px; }")
         self.update_timer.stop()  # Stop updating the game
         QTimer.singleShot(2000, QCoreApplication.instance().quit)
 
     def gameOver(self):
         self.winLabel.setText("Game Over! You missed too many eggs.")
-        self.winLabel.setGeometry(200, 250, 400, 50)  # Adjust geometry as needed
-        self.winLabel.setStyleSheet("QLabel { color : red; font: 40px; }")
+        self.winLabel.setGeometry(100, 250, 600, 50)  # Adjust geometry as needed
+        self.winLabel.setStyleSheet("QLabel { color : red; font: 30px; }")
         self.update_timer.stop()  # Stop updating the game
         QTimer.singleShot(2000, QCoreApplication.instance().quit)
     
@@ -223,7 +226,9 @@ class EggCatcher(QDialog):
     def show_high_scores(self):
         high_scores_text = "High Scores:\n" + "\n".join(str(score) for score in self.high_scores)
         self.highScoreLabel = QLabel(high_scores_text, self)
-        self.highScoreLabel.setGeometry(550, 100, 200, 200)
+        self.highScoreLabel.setGeometry(10, 50, 200, 200)
+        self.highScoreLabel.setAlignment(Qt.AlignLeft)
+        self.highScoreLabel.setStyleSheet('font-size: 13px; font-weight: bold; color: #777777;')
         self.highScoreLabel.show()
 
 if __name__ == '__main__':
