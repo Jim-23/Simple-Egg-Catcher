@@ -1,4 +1,4 @@
 # Simple Egg Catcher
 
-### Catch eggs until you get 10!
+### Catch eggs until you get 50!
 - perfect as an Easter Egg in your apps!
